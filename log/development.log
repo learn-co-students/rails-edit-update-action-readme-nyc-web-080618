@@ -625,3 +625,51 @@ Processing by PostsController#edit as HTML
   [1m[35mPost Load (0.1ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
   Rendered posts/edit.html.erb within layouts/application (16.6ms)
 Completed 200 OK in 34ms (Views: 33.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/posts/new" for ::1 at 2018-08-31 13:51:33 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 355ms (Views: 340.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/posts" for ::1 at 2018-08-31 13:51:47 -0400
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"I82ody6Q0FvUGkRm24HWnJDh5IlWWRMKjFuAPyzMagMHnq6oEaT+lSHh2+00XUlr/EpziMM98EHZyVOx1SLA/A==", "title"=>"A test", "description"=>"Even Moar content", "commit"=>"Submit Post"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "posts" ("title", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "A test"], ["description", "Even Moar content"], ["created_at", "2018-08-31 17:51:47.267738"], ["updated_at", "2018-08-31 17:51:47.267738"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/posts/3
+Completed 302 Found in 8ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/posts/3" for ::1 at 2018-08-31 13:51:47 -0400
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered posts/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 22ms (Views: 15.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/posts/3/edit" for ::1 at 2018-08-31 13:51:59 -0400
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered posts/edit.html.erb within layouts/application (29.2ms)
+Completed 200 OK in 51ms (Views: 50.1ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/posts/3" for ::1 at 2018-08-31 13:52:04 -0400
+Processing by PostsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5lFsQ3KE5wUXedJ4+OSavjiIuxp3A6FDrYlXu1RRQUrCAmqcTbDJy+KCTfMXOAVJVCMsG+JnQgj4G4Q1rb/rtQ==", "post"=>{"title"=>"change", "description"=>"Even Moar content"}, "commit"=>"Submit Post", "id"=>"3"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+RuntimeError ({"utf8"=>"✓", "_method"=>"patch", "authenticity_token"=>"5lFsQ3KE5wUXedJ4+OSavjiIuxp3A6FDrYlXu1RRQUrCAmqcTbDJy+KCTfMXOAVJVCMsG+JnQgj4G4Q1rb/rtQ==", "post"=>{"title"=>"change", "description"=>"Even Moar content"}, "commit"=>"Submit Post", "controller"=>"posts", "action"=>"update", "id"=>"3"}):
+  app/controllers/posts_controller.rb:27:in `update'
+
+
+  Rendered /Users/forrestbenton/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.9ms)
+  Rendered /Users/forrestbenton/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/forrestbenton/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/forrestbenton/.rvm/gems/ruby-2.3.3/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (68.8ms)
